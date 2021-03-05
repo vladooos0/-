@@ -1,0 +1,179 @@
+#pragma endregion
+String^ TorZ;
+private: System::Void Form1_Load(System::Object^ sender, System::EventArgs^ e) {
+this->Text = "Калькулятор";
+pictureBox1->Image=Image::FromFile("d:\\12.0.jpeg");
+this->pictureBox1->SizeMode = PictureBoxSizeMode::StretchImage;
+label1->Text = "Равно:";
+button1->Text = "+";
+button2->Text = "-";
+button3->Text = "*";
+button4->Text = "/";
+button5->Text = "pow";
+button6->Text = "sin";
+button7->Text = "cos";
+button8->Text = "tan";
+button9->Text = "ctan";
+TorZ = Globalization::NumberFormatInfo::CurrentInfo->NumberDecimalSeparator;
+}
+
+private: System::Void textBox1_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
+bool TZFound = false;
+if (Char::IsDigit(e->KeyChar) == true) return;
+if (e->KeyChar == (char)Keys::Back) return;
+if (textBox1->Text->IndexOf(TorZ) != -1)
+TZFound = true;
+if (TZFound == true) { e->Handled = true; return; }
+if (e->KeyChar.ToString() == TorZ) return;
+e->Handled = true;
+}
+
+private: System::Void textBox2_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
+bool TZFound = false;
+if (Char::IsDigit(e->KeyChar) == true) return;
+if (e->KeyChar == (char)Keys::Back) return;
+if (textBox2->Text->IndexOf(TorZ) != -1)
+TZFound = true;
+if (TZFound == true) { e->Handled = true; return; }
+if (e->KeyChar.ToString() == TorZ) return;
+e->Handled = true;
+}
+
+private: System::Void textBox3_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
+bool TZFound = false;
+if (Char::IsDigit(e->KeyChar) == true) return;
+if (e->KeyChar == (char)Keys::Back) return;
+if (textBox3->Text->IndexOf(TorZ) != -1)
+TZFound = true;
+if (TZFound == true) { e->Handled = true; return; }
+if (e->KeyChar.ToString() == TorZ) return;
+e->Handled = true;
+}
+
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+Single a, b, c = 0;
+
+Single A = Single::TryParse(textBox1->Text,
+System::Globalization::NumberStyles::Number,
+System::Globalization::NumberFormatInfo::CurrentInfo, a);
+Single B = Single::TryParse(textBox2->Text,
+System::Globalization::NumberStyles::Number,
+System::Globalization::NumberFormatInfo::CurrentInfo, b);
+c = a + b;
+textBox3->Text = String::Format("{0:F4}", c);
+}
+
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+Single a, b, c = 0;
+
+Single A = Single::TryParse(textBox1->Text,
+System::Globalization::NumberStyles::Number,
+System::Globalization::NumberFormatInfo::CurrentInfo, a);
+Single B = Single::TryParse(textBox2->Text,
+System::Globalization::NumberStyles::Number,
+System::Globalization::NumberFormatInfo::CurrentInfo, b);
+c = a - b;
+textBox3->Text = String::Format("{0:F4}", c);
+}
+
+private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+Single a, b, c = 0;
+
+Single A = Single::TryParse(textBox1->Text,
+System::Globalization::NumberStyles::Number,
+System::Globalization::NumberFormatInfo::CurrentInfo, a);
+Single B = Single::TryParse(textBox2->Text,
+System::Globalization::NumberStyles::Number,
+System::Globalization::NumberFormatInfo::CurrentInfo, b);
+c = a * b;
+textBox3->Text = String::Format("{0:F4}", c);
+}
+
+private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
+Single a, b, c = 0;
+
+Single A = Single::TryParse(textBox1->Text,
+System::Globalization::NumberStyles::Number,
+System::Globalization::NumberFormatInfo::CurrentInfo, a);
+Single B = Single::TryParse(textBox2->Text,
+System::Globalization::NumberStyles::Number,
+System::Globalization::NumberFormatInfo::CurrentInfo, b);
+c = a / b;
+textBox3->Text = String::Format("{0:F4}", c);
+}
+
+private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
+Single a, b, c = 0;
+
+Single A = Single::TryParse(textBox1->Text,
+System::Globalization::NumberStyles::Number,
+System::Globalization::NumberFormatInfo::CurrentInfo, a);
+Single B = Single::TryParse(textBox2->Text,
+System::Globalization::NumberStyles::Number,
+System::Globalization::NumberFormatInfo::CurrentInfo, b);
+c = pow(a,b); // возвести a в степень b
+textBox3->Text = String::Format("{0:F4}", c);
+}
+
+private: System::Void button6_Click(System::Object^ sender, System::EventArgs^ e) {
+Single a, b, c = 0, d = 0;
+
+Single A = Single::TryParse(textBox1->Text,
+System::Globalization::NumberStyles::Number,
+System::Globalization::NumberFormatInfo::CurrentInfo, a);
+Single B = Single::TryParse(textBox2->Text,
+System::Globalization::NumberStyles::Number,
+System::Globalization::NumberFormatInfo::CurrentInfo, b);
+c = sin(a*3.14/180);
+d = sin(b*3.14/180);
+// Если поле textBox пусто, то результатом будет 1
+textBox3->Text = String::Format("{0:F2} | {1:F2}", c, d);
+}
+
+private: System::Void button7_Click(System::Object^ sender, System::EventArgs^ e) {
+Single a, b, c = 0, d = 0;
+
+Single A = Single::TryParse(textBox1->Text,
+System::Globalization::NumberStyles::Number,
+System::Globalization::NumberFormatInfo::CurrentInfo, a);
+Single B = Single::TryParse(textBox2->Text,
+System::Globalization::NumberStyles::Number,
+System::Globalization::NumberFormatInfo::CurrentInfo, b);
+c = cos(a*3.14/180);
+d = cos(b*3.14/180);
+// Если поле textBox пусто, то результатом будет 1
+textBox3->Text = String::Format("{0:F2} | {1:F2}", c, d);
+}
+
+private: System::Void button8_Click(System::Object^ sender, System::EventArgs^ e) {
+Single a, b, c = 0, d = 0;
+
+Single A = Single::TryParse(textBox1->Text,
+System::Globalization::NumberStyles::Number,
+System::Globalization::NumberFormatInfo::CurrentInfo, a);
+Single B = Single::TryParse(textBox2->Text,
+System::Globalization::NumberStyles::Number,
+System::Globalization::NumberFormatInfo::CurrentInfo, b);
+c = tan(a*3.14/180);
+d = tan(b*3.14/180);
+// Если поле textBox пусто, то результатом будет 1
+textBox3->Text = String::Format("{0:F2} | {1:F2}", c, d);
+}
+
+private: System::Void button9_Click(System::Object^ sender, System::EventArgs^ e) {
+Single a, b, c = 0, d = 0;
+
+Single A = Single::TryParse(textBox1->Text,
+System::Globalization::NumberStyles::Number,
+System::Globalization::NumberFormatInfo::CurrentInfo, a);
+Single B = Single::TryParse(textBox2->Text,
+System::Globalization::NumberStyles::Number,
+System::Globalization::NumberFormatInfo::CurrentInfo, b);
+c = 1/tan(a*3.14/180);
+d = 1/tan(b*3.14/180);
+// Если поле textBox пусто, то результатом будет 1
+textBox3->Text = String::Format("{0:F2} | {1:F2}", c, d);
+}
+
+};
+}
